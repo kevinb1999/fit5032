@@ -119,7 +119,7 @@
       <h2>Attribute, Class and Style Binding with <code>v-bind</code></h2>
       <p>Highlighting Specific Authors:</p>
       <ul>
-        <li v-for="author in authors" :key="author.id" :style="{ back }" :class="{ 'highlight': author.name === 'George Orwell' }" >
+        <li v-for="author in authors" :key="author.id" :style="{ back }" :class="{ 'highlight': author === orwell }" >
           {{ author.name }}
         </li>
       </ul>
