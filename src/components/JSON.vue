@@ -220,8 +220,4 @@ li {
   margin: 5px 0;
   border-radius: 5px;
 }
-.highlight {
-  background-color: #fbff00;
-  color: black;
-}
 </style>
