@@ -2,22 +2,24 @@
 import HelloWorld from './components/HelloWorld.vue'
 import JSON from './components/JSON.vue'
 import MyName from './components/MyName.vue'
+import Form from './components/Form.vue'
 </script>
 
 <template>
-  <header>
+  <!-- <header>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
       <MyName name="Mike Kevin Balapitiya" />
     </div>
-  </header>
+  </header> -->
 
-  <main>
+  <!-- <main> -->
     <!-- <TheWelcome /> -->
-    <JSON />
-  </main>
+    <!-- <JSON /> -->
+    <Form />
+  <!-- </main> -->
 </template>
 
 <style scoped>
@@ -30,7 +32,7 @@ header {
   margin: 0 auto 2rem;
 }
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   header {
     display: flex;
     place-items: center;
@@ -46,5 +48,5 @@ header {
     place-items: flex-start;
     flex-wrap: wrap;
   }
-}
+} */
 </style>
