@@ -16,9 +16,9 @@ import Form from './components/Form.vue'
   </header> -->
 
   <!-- <main> -->
-    <!-- <TheWelcome /> -->
-    <!-- <JSON /> -->
-    <Form />
+  <!-- <TheWelcome /> -->
+  <!-- <JSON /> -->
+  <Form />
   <!-- </main> -->
 </template>
 
