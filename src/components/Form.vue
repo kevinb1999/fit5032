@@ -59,12 +59,12 @@
     </div>
   </div>
   <!-- Submited Cards -->
-  <div class="row mt-5" v-if="submittedCards.length">
-    <div class="d-flex flex-wrap justify-content-start">
+  <div class="row mt-5 offset-1 offset-sm-2 offset-md-3 offset-lg-4 offset-xl-1" v-if="submittedCards.length">
+    <div class="d-flex flex-wrap justify-content-start col-11 col-sm-10 col-md-9 col-lg-8 col-xl-12">
       <div
         v-for="(card, index) in submittedCards"
         :key="index"
-        class="card m-2"
+        class="card m-2 row mb-3"
         style="width: 18rem"
       >
         <div class="card-header">User Information</div>
