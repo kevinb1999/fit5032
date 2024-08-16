@@ -79,37 +79,24 @@
       </div>
     </div>
   </div>
-  <!-- Submited Cards -->
-  <div
-    class="row mt-5 offset-1 offset-sm-2 offset-md-3 offset-lg-4 offset-xl-1"
-    v-if="submittedCards.length"
-  >
-    <div
-      class="d-flex flex-wrap justify-content-start col-11 col-sm-10 col-md-9 col-lg-8 col-xl-12"
-    >
-      <div
-        v-for="(card, index) in submittedCards"
-        :key="index"
-        class="card m-2 row mb-3"
-        style="width: 18rem"
-      >
-        <div class="card-header">User Information</div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Username: {{ card.username }}</li>
-          <li class="list-group-item">Password: {{ card.password }}</li>
-          <li class="list-group-item">
-            Australian Resident: {{ card.isAustralian ? 'Yes' : 'No' }}
-          </li>
-          <li class="list-group-item">Gender: {{ card.gender }}</li>
-          <li class="list-group-item">Reason: {{ card.reason }}</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <!-- Submited Table -->
+  <DataTable :value="submittedData" tableStyle="min-width: 50rem" class="container p-4">
+    <Column field="username" header="Username"></Column>
+    <Column field="password" header="Password"></Column>
+    <Column field="isAustralian" header="Australian Resident">
+      <template #body="slotProps">
+            {{ slotProps.data.isAustralian ? 'Yes': 'No' }}
+        </template>
+    </Column>
+    <Column field="gender" header="Gender"></Column>
+    <Column field="reason" header="Reason"></Column>
+  </DataTable>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
 
 const formData = ref({
   username: '',
@@ -119,7 +106,7 @@ const formData = ref({
   gender: ''
 })
 
-const submittedCards = ref([])
+const submittedData = ref([])
 
 const submitForm = () => {
   validateName(true)
@@ -132,14 +119,14 @@ const submitForm = () => {
     !errors.value.gender &&
     !errors.value.reason
   ) {
-    submittedCards.value.push({
+    submittedData.value.push({
       ...formData.value
     })
   }
 }
 
 const clearForm = () => {
-  submittedCards.value = []
+  submittedData.value = []
 }
 
 const errors = ref({
