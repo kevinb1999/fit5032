@@ -12,10 +12,22 @@
         <li class="nav-item">
           <router-link to="/about" class="nav-link" active-class="active">About</router-link>
         </li>
+        <li class="nav-item" v-if="!isAuthenticated">
+          <router-link to="/login" class="nav-link" active-class="active">Login</router-link>
+        </li>
+        <li class="nav-item" v-if="isAuthenticated">
+          <router-link to="/logout" class="nav-link" active-class="active">Logout</router-link>
+        </li>
       </ul>
     </header>
   </div>
 </template>
+
+<script setup>
+import { useStorage } from '@vueuse/core'
+
+const isAuthenticated = useStorage('authenticated', false, sessionStorage)
+</script>
 
 <style scoped>
 .b-example-divider {

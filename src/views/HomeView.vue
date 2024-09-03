@@ -85,9 +85,9 @@ const validateReason = (blur) => {
 
 const friendReason = () => {
   if (formData.value.reason.toLowerCase().includes('friend')) {
-    errors.value.friend = 'Great to have a friend!';
+    errors.value.friend = 'Great to have a friend!'
   } else {
-    errors.value.friend = null;
+    errors.value.friend = null
   }
 }
 
@@ -95,7 +95,7 @@ const friendReason = () => {
  * Confirm password validation function that checks if the password and confirm password fields match.
  * @param blur: boolean - If true, the function will display an error message if the passwords do not match.
  */
- const validateConfirmPassword = (blur) => {
+const validateConfirmPassword = (blur) => {
   if (formData.value.password !== formData.value.confirmPassword) {
     if (blur) errors.value.confirmPassword = 'Passwords do not match.'
   } else {
@@ -137,11 +137,9 @@ const friendReason = () => {
                 <option value="other">Other</option>
               </select>
             </div>
-            
           </div>
 
           <div class="row mb-3">
-
             <div class="col-md-6 col-sm-6">
               <label for="password" class="form-label">Password</label>
               <input
@@ -164,9 +162,10 @@ const friendReason = () => {
                 v-model="formData.confirmPassword"
                 @blur="() => validateConfirmPassword(true)"
               />
-              <div v-if="errors.confirmPassword" class="text-danger">{{ errors.confirmPassword }}</div>
+              <div v-if="errors.confirmPassword" class="text-danger">
+                {{ errors.confirmPassword }}
+              </div>
             </div>
-
           </div>
 
           <div class="row mb-3">
@@ -244,5 +243,4 @@ const friendReason = () => {
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
