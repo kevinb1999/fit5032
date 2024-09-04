@@ -5,12 +5,15 @@ import LoginView from '../views/LoginView.vue'
 import AccessDenied from '../views/AccessDenied.vue'
 import FirebaseSigninView from '@/views/FirebaseSigninView.vue'
 import FirebaseRegisterView from '@/views/FirebaseRegisterView.vue'
+import { signOut } from 'firebase/auth'
+import { auth } from '@/main'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: HomeView
+    component: HomeView,
+    meta: { requiresAdmin: true }
   },
   {
     path: '/about',
@@ -32,14 +35,25 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const isAuthenticated = sessionStorage.getItem('authenticated') === 'true'
+  const role = sessionStorage.getItem('userRole')
   if (to.meta.requiresAuth && !isAuthenticated) {
+    next('/access-denied')
+  } else if (to.path === '/logout') {
+    signOut(auth)
+      .then(() => {
+        console.log('User signed out successfully')
+        sessionStorage.clear()
+      })
+      .catch((err) => {
+        console.log('Error signing out')
+        console.log(err)
+      })
+
+    next('/login')
+  } else if (to.meta.requiresAdmin && role !== 'admin') {
     next('/access-denied')
   } else {
     next()
-  }
-  if (to.path === '/logout') {
-    sessionStorage.setItem('authenticated', false)
-    next('/login')
   }
 })
 

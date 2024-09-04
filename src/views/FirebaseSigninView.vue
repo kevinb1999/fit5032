@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex justify-content-center align-items-center h-100 bg-light">
+  <div class="d-flex justify-content-center align-items-center h-100 bg-light">
     <div class="card p-4 shadow-sm">
       <div class="card-body">
         <h2 class="card-title text-center mb-4">Sign in via Firebase</h2>
@@ -35,34 +35,55 @@
       </div>
     </div>
   </div>
-  </template>
-  
-  <script setup>
-  import { ref } from "vue";
-  import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-  import { useRouter } from "vue-router";
-  
-  const email = ref("");
-  const password = ref("");
-  const router = useRouter();
-  const auth = getAuth();
-  const error = ref("");
-  const feedback = ref("")
-  
-  const signin = () => {
-    signInWithEmailAndPassword(getAuth(), email.value, password.value)
-      .then((data) => {
-        console.log("Firebase Register Successful!");
-        feedback.value = "Firebase Register Successful!"
-        error.value = ""
-        router.push("/");
-        console.log(auth.currentUser); // To check the current user signed in
-      })
-      .catch((err) => {
-        feedback.value = ""
-        error.value = "Error logging in"
-        console.log(err.code);
-      });
-  };
-  </script>
-  
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { useRouter } from 'vue-router'
+import { doc, getDoc, getFirestore } from 'firebase/firestore'
+
+const email = ref('')
+const password = ref('')
+const role = ref(null)
+const router = useRouter()
+const auth = getAuth()
+const db = getFirestore()
+const error = ref('')
+const feedback = ref('')
+
+const signin = () => {
+  signInWithEmailAndPassword(getAuth(), email.value, password.value)
+    .then((data) => {
+      console.log('Firebase Login Successful!')
+
+      const user = data.user
+      getDoc(doc(db, 'users', user.uid))
+        .then((dbUser) => {
+          if (dbUser.exists()) {
+            role.value = dbUser.data().role
+            sessionStorage.setItem('userRole', role.value)
+            error.value = ''
+            feedback.value = 'Firebase Login Successful!'
+            console.log('User found. Role added to session storage: ', role.value)
+            router.push('/')
+          } else {
+            feedback.value = ''
+            error.value = 'User not found'
+            console.log('User not found')
+          }
+        })
+        .catch((dbErr) => {
+          console.log('Error fetching user from database', dbErr.code)
+          feedback.value = ''
+          error.value = 'Database Error'
+        })
+      console.log(auth.currentUser) // To check the current user signed in
+    })
+    .catch((err) => {
+      feedback.value = ''
+      error.value = 'Error logging in'
+      console.log(err.code)
+    })
+}
+</script>
