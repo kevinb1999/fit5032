@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import LoginView from '../views/LoginView.vue'
 import AccessDenied from '../views/AccessDenied.vue'
+import FirebaseSigninView from '@/views/FirebaseSigninView.vue'
+import FirebaseRegisterView from '@/views/FirebaseRegisterView.vue'
 
 const routes = [
   {
@@ -18,7 +20,9 @@ const routes = [
   },
   { path: '/login', name: 'Login', component: LoginView },
   { path: '/logout', name: 'Logout', component: LoginView },
-  { path: '/access-denied', name: 'AccessDenied', component: AccessDenied }
+  { path: '/access-denied', name: 'AccessDenied', component: AccessDenied },
+  { path: '/FireLogin', name: 'FireLogin', component: FirebaseSigninView },
+  { path: '/FireRegister', name: 'FireRegister', component: FirebaseRegisterView }
 ]
 
 const router = createRouter({
