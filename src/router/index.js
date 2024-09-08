@@ -8,7 +8,6 @@ import FirebaseRegisterView from '@/views/FirebaseRegisterView.vue'
 import { signOut } from 'firebase/auth'
 import { auth } from '@/firebase/init'
 import AddBookView from '@/views/AddBookView.vue'
-import BookList from '@/components/BookList.vue'
 
 const routes = [
   {
