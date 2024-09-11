@@ -103,7 +103,7 @@ export default {
         q = query(
           q,
           where('name', '>=', searchName.value),
-          where('name', '<=', searchName.value + '\uf8ff')
+          where('name', '<=', searchName.value)
         )
       }
 
