@@ -45,12 +45,12 @@
   export default {
     name: "App",
     data() {
-      return {
-        city: "",
-        weatherData: null,
-        hourlyForecast: [],
-        dailyForecast: [],
-      };
+        return {
+            city: "",
+            weatherData: null,
+            hourlyForecast: [],
+            dailyForecast: [],
+        };
     },
     //computed is a property that is used to define a property that 
     //is dependent on other data properties. 
