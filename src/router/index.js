@@ -8,6 +8,7 @@ import FirebaseRegisterView from '@/views/FirebaseRegisterView.vue'
 import { signOut } from 'firebase/auth'
 import { auth } from '@/firebase/init'
 import AddBookView from '@/views/AddBookView.vue'
+import WeatherView from '@/views/WeatherView.vue'
 
 const routes = [
   {
@@ -31,7 +32,8 @@ const routes = [
   { path: '/logout', name: 'Logout', component: LoginView },
   { path: '/access-denied', name: 'AccessDenied', component: AccessDenied },
   { path: '/FireLogin', name: 'FireLogin', component: FirebaseSigninView },
-  { path: '/FireRegister', name: 'FireRegister', component: FirebaseRegisterView }
+  { path: '/FireRegister', name: 'FireRegister', component: FirebaseRegisterView },
+  { path: '/WeatherCheck', name: 'WeatherCheck', component: WeatherView  }
 ]
 
 const router = createRouter({
